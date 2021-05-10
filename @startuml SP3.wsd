@@ -28,10 +28,6 @@ class GUI{
 
 }
 
-class DBConnector{
-
-}
-
 class Director{
 
 }
@@ -42,7 +38,6 @@ class Genre{
 
 Main "1" *-- "1" UI
 Main "1" *-- "1" Search
-Main "1" *-- "1" DBConnector
 Main "1" *-- "many" User
 Film "many" *-- "many" Actor
 Main "1" *-- "1" GUI
