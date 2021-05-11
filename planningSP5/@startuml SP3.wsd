@@ -1,0 +1,60 @@
+@startuml SP3
+
+class Main{
+
+}
+
+class Film{
+
+}
+
+class User{
+
+}
+
+class Actor{
+
+}
+
+class Search{
+
+}
+
+class UI{
+
+}
+
+class GUI{
+
+}
+
+class Director{
+
+}
+
+class Genre{
+
+}
+
+Main "1" *-- "1" UI
+Main "1" *-- "1" Search
+Main "1" *-- "many" User
+Film "many" *-- "many" Actor
+Main "1" *-- "1" GUI
+Main "1" *-- "many" Film
+Film "1" *-- "many" Director
+Film "1" *-- "many" Genre
+
+@enduml
+
+use cases, 
+adding a movie to liked list,
+searching for movie,
+
+
+/'
+Class relationships:
+<|-- Extention
+*-- Composition
+o-- Aggregation
+'/
