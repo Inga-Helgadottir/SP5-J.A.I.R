@@ -1,54 +1,57 @@
-@startuml SP3
+@startuml SP5
 
 class Main{
-
+    
 }
 
 class Film{
-
+    ArrayList<String> actors;
+    ArrayList<String> directors;
+    ArrayList<String> genres;
 }
 
 class User{
-
-}
-
-class Actor{
-
+    String email;
+    String password;
+    String name;
 }
 
 class Search{
-
+    Film findFilmByName();
+    ArrayList<Film> getAllFilmsofGenre();
 }
 
-class UI{
-
+class SignIn{
+    private JRadioButton listlabel;
+    private JLabel userlabel;
+    private JTextField userText;
+    private JLabel passwordLabel;
+    private JPasswordField passwordText;
+    private JButton button;
+    private JLabel success;
+    private Integer age []= {0,1};
+    void sign();
+    void actionPerformed();
 }
 
 class GUI{
-
-}
-
-class Director{
+    void actionPreformed();
 
 }
 
 class DBConnector{
-
+    Film readFilm();
+    Film readFilmPersonelle();
 }
 
-class Genre{
 
-}
-
-Main "1" *-- "1" UI
+Main "1" *-- "1" SignIn
 Main "1" *-- "1" DBConnector
 Main "1" *-- "1" Search
 Main "1" *-- "many" User
-Film "many" *-- "many" Actor
 Main "1" *-- "1" GUI
 Main "1" *-- "many" Film
-Film "1" *-- "many" Director
-Film "1" *-- "many" Genre
+User "many" *-- "many" SignIn
 
 @enduml
 

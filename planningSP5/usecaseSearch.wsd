@@ -1,8 +1,8 @@
-@startuml SP3
+@startuml SP5
 
 :User: --> (User logs in)
-(User logs in) --> (User chooses search in menu)
-(User chooses search in menu) --> (User writes the name of a movie)
+(User logs in) --> (User chooses the search option in menu)
+(User chooses the search option in menu) --> (User writes the name of a movie)
 (User writes the name of a movie) --> (all information about the movie is shown to the user)
 
 @enduml

@@ -1,52 +1,37 @@
-@startuml SP3
+@startuml SP5
 
 class Main{
-
+    
 }
 
 class Film{
-
+    
 }
 
 class User{
-
-}
-
-class Actor{
-
+    
 }
 
 class Search{
-
+    
 }
 
-class UI{
-
+class SignIn{
+    
 }
 
 class GUI{
 
 }
 
-class Director{
-
-}
-
-class Genre{
-
-}
-
-Main "1" *-- "1" UI
+Main "1" *-- "1" SignIn
 Main "1" *-- "1" Search
 Main "1" *-- "many" User
-Film "many" *-- "many" Actor
 Main "1" *-- "1" GUI
 Main "1" *-- "many" Film
-Film "1" *-- "many" Director
-Film "1" *-- "many" Genre
+User "many" *-- "many" SignIn
 
 @enduml
-
 
 /'
 Class relationships:
