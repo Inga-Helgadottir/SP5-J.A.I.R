@@ -1,7 +1,8 @@
 @startuml SP5
 
 class Main{
-    
+    ArrayList<Film> films;
+    void startMenu();
 }
 
 class Film{
@@ -36,7 +37,6 @@ class SignIn{
 
 class GUI{
     void actionPreformed();
-
 }
 
 class DBConnector{
