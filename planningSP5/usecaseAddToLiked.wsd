@@ -1,11 +1,9 @@
 @startuml SP5
 
 :User: --> (User logs in)
-(User logs in) --> (User chooses the search option in menu)
-(User chooses the search option in menu) --> (User chooses to search for the name of a movie)
-(User chooses to search for the name of a movie) --> (User is asked to write the name of the movie they are looking for)
+(User logs in) --> (User chooses the search for a film option in menu)
+(User chooses the search for a film option in menu) --> (User is asked to write the name of the movie they are looking for)
 (User is asked to write the name of the movie they are looking for) --> (User writes the name of a movie)
 (User writes the name of a movie) --> (all information about the movie is shown to the user)
-(all information about the movie is shown to the user) --> (the movie menu shows your options)
-(the movie menu shows your options) --> (User chooses to add the movie to liked list)
+(all information about the movie is shown to the user) --> (User clickes on the like button, to add a movie to the liked list)
 @enduml

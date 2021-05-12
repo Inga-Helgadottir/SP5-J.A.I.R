@@ -13,6 +13,7 @@ public class SignIn implements ActionListener {
     private static JButton button;
     private static JLabel success;
     private Integer age []= {0,1};
+
     public void sign() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("Sign in");
@@ -53,6 +54,7 @@ public class SignIn implements ActionListener {
             success.setText("login failed incorrect email or password.");
         } else {
             success.setText("login successful!");
+            //kalde start menuen herfra
         }
 
     }
