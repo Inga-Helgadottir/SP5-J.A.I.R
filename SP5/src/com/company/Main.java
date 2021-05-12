@@ -6,9 +6,9 @@ public class Main {
     public static ArrayList<Film> films;
 
     public static void main(String[] args) {
-//        SignIn signIn = new SignIn();
-//        signIn.sign();
-        DBConnector.testConnection();
+        SignIn signIn = new SignIn();
+        signIn.sign();
+//        DBConnector.testConnection();
     }
 
     public static void startMenu(){

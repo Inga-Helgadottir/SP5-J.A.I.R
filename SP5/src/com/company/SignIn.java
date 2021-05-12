@@ -55,6 +55,9 @@ public class SignIn implements ActionListener {
         } else {
             success.setText("login successful!");
             //kalde start menuen herfra
+            Search ser = new Search();
+//            ser.seeAllFilms();
+            ser.findFilmByName("lala");
         }
 
     }

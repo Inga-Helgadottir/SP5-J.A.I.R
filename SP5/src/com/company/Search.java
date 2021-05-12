@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Search {
+    DBConnector db = new DBConnector();
 
-//    public Film findFilmByName(){
-//        Scanner s = new Scanner(System.in);
-//        String str = s.nextLine();
-//
-//    }
-//
+    public void findFilmByName(String name){
+        db.getFilmByName(name);
+    }
+
+    public void seeAllFilms(){
+        db.seeAllFilms();
+    }
+
 //    public ArrayList<Film> getAllFilmsofGenre(){
 //
 //    }
