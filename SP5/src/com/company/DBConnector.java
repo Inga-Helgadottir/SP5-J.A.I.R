@@ -41,6 +41,7 @@ public class DBConnector {
       }
    }
 
+<<<<<<< Updated upstream
     public void seeAllFilms(){
        Connection conn = null;
        Statement stmt = null;
@@ -173,5 +174,60 @@ public class DBConnector {
          }//end finally try
       }//end try
    }
+=======
+   public static User getUser(String email, String password){
+      Connection conn = null;
+      PreparedStatement pstmt = null;
+
+      User userMatch = null;
+
+      try{
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);
+         String sql =
+         "SELECT * FROM movie_pedia.users\n" +
+         "WHERE email = ? AND user_password = ?";
+
+         pstmt = conn.prepareStatement(sql);
+
+         pstmt.setString(1, email);
+         pstmt.setString(2, password);
+
+         ResultSet rs = pstmt.executeQuery();
+
+         while (rs.next()) {
+            int id = rs.getInt("id");
+            String userEmail = rs.getString("email");
+            String fullName = rs.getString("full_name");
+
+            userMatch = new User(id, userEmail, fullName);
+         }
+
+         rs.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         try{
+            if(pstmt!=null)
+               pstmt.close();
+         }catch(SQLException se2){
+         }
+
+         try{
+            if(conn!=null){
+               conn.close();
+            }
+         }catch(SQLException se){
+            se.printStackTrace();
+         }
+      }
+      return userMatch;
+   }
+
+//    public Film readFilm(){
+//
+//    }
+>>>>>>> Stashed changes
 
 }

@@ -1,13 +1,24 @@
 package com.company;
 
+import java.util.ArrayList;
+
 public class User {
+    private int id;
     private String email;
     private String password;
     private String name;
+    private ArrayList<Film> likedFilms = new ArrayList<Film>();
 
     public User(String email, String password, String name) {
         this.email = email;
         this.password = password;
+        this.name = name;
+    }
+
+    // For user created by data from database
+    public User(int id, String email, String name){
+        this.id = id;
+        this.email = email;
         this.name = name;
     }
 

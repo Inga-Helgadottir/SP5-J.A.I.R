@@ -50,10 +50,13 @@ public class SignIn implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String user = userText.getText();
         String password = passwordText.getText();
-        if (!(user.equals("martin.olsen@mail.dk") && Objects.equals(password, "Olsen"))) {
-            success.setText("login failed incorrect email or password.");
-        } else {
-            success.setText("login successful!");
+
+        Main.currentUser = DBConnector.getUser(user, password);
+
+        if (Main.currentUser == null) {
+            success.setText("Failed to login. Incorrect email or password...");
+        }else{
+            success.setText("Login successful! Welcome back " + Main.currentUser.getName());
             //kalde start menuen herfra
             Search ser = new Search();
 //            ser.seeAllFilms();
