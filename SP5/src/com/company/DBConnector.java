@@ -2,16 +2,17 @@ package com.company;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class DBConnector {
 
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-   static final String DB_URL = "jdbc:mysql://localhost:3306/film_pedia"; // REMEMBER TO CHANGE PORT NUMBER
+   static final String DB_URL = "jdbc:mysql://localhost:3307/film_pedia"; // REMEMBER TO CHANGE PORT NUMBER
 
    //  Database credentials
    static final String USER = "root";
-   static final String PASS = "password"; // REMEMBER TO CHANGE PASSWORD!
+   static final String PASS = "kisshu25"; // REMEMBER TO CHANGE PASSWORD!
 
     public void seeAllFilms(){
        Connection conn = null;
@@ -171,6 +172,7 @@ public class DBConnector {
             String fullName = rs.getString("user_name");
 
             userMatch = new User(id, userEmail, fullName);
+            getUserLikedList(userMatch);
          }
 
          rs.close();
@@ -194,6 +196,71 @@ public class DBConnector {
          }
       }
       return userMatch;
+   }
+
+   private static void getUserLikedList(User user){
+      Connection conn = null;
+      PreparedStatement pstmt = null;
+
+      try {
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+         String sql =
+         "SELECT film_user.id AS user_id, " +
+         "films.id AS film_id, " +
+         "films.film_name, " +
+         "film_genre, " +
+         "films.secondary_film_genre, " +
+         "films.film_year_of_release, " +
+         "films.film_image\n" +
+         "FROM liked_list\n" +
+         "INNER JOIN film_user ON liked_list.film_user_id = film_user.id\n" +
+         "INNER JOIN films ON liked_list.film_id = films.id\n" +
+         "WHERE film_user.id = ?\n" +
+         "ORDER BY film_id";
+
+         pstmt = conn.prepareStatement(sql);
+         pstmt.setInt(1, user.getId());
+         ResultSet rs = pstmt.executeQuery();
+
+         while (rs.next()){
+            int id = rs.getInt("film_id");
+            String title = rs.getString("film_name");
+            String genre1 = rs.getString("film_genre");
+            String genre2 = rs.getString("secondary_film_genre");
+            String releaseDate = rs.getString("film_year_of_release");
+            String imgPath = rs.getString("film_image");
+
+            ArrayList<String> genres = new ArrayList<String>(); //todo Consider creating a table for genres
+            genres.add(genre1);
+            genres.add(genre2);
+
+            ArrayList<String> directors = new ArrayList<String>(); //todo Needs a connection table to films to get data
+            ArrayList<String> actors = new ArrayList<String>(); //todo Needs a connection table to films to get data
+
+            user.getLikedFilms().add(new Film(id, title, releaseDate, imgPath, directors, actors, genres));
+         }
+
+         rs.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         try{
+            if(pstmt!=null)
+               pstmt.close();
+         }catch(SQLException se2){
+         }
+
+         try{
+            if(conn!=null){
+               conn.close();
+            }
+         }catch(SQLException se){
+            se.printStackTrace();
+         }
+      }
    }
 
 //    public Film readFilm(){
