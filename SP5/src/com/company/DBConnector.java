@@ -41,7 +41,6 @@ public class DBConnector {
       }
    }
 
-<<<<<<< Updated upstream
     public void seeAllFilms(){
        Connection conn = null;
        Statement stmt = null;
@@ -174,7 +173,7 @@ public class DBConnector {
          }//end finally try
       }//end try
    }
-=======
+
    public static User getUser(String email, String password){
       Connection conn = null;
       PreparedStatement pstmt = null;
@@ -228,6 +227,5 @@ public class DBConnector {
 //    public Film readFilm(){
 //
 //    }
->>>>>>> Stashed changes
 
 }
