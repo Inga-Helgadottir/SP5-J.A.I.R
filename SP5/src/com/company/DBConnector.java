@@ -11,35 +11,7 @@ public class DBConnector {
 
    //  Database credentials
    static final String USER = "root";
-   static final String PASS = "Password"; // REMEMBER TO CHANGE!
-
-
-   public static void testConnection(){
-      Connection conn = null;
-      Statement stmt = null;
-
-      try{
-         System.out.println("Connecting to database...");
-         conn = DriverManager.getConnection(DB_URL,USER,PASS);
-         conn.close();
-      }catch(SQLException se){
-         se.printStackTrace();
-      }catch(Exception e){
-         e.printStackTrace();
-      }finally{
-         try{
-            if(stmt!=null)
-               stmt.close();
-         }catch(SQLException se2){
-         }
-         try{
-            if(conn!=null)
-               conn.close();
-         }catch(SQLException se){
-            se.printStackTrace();
-         }
-      }
-   }
+   static final String PASS = "password"; // REMEMBER TO CHANGE PASSWORD!
 
     public void seeAllFilms(){
        Connection conn = null;
@@ -183,8 +155,8 @@ public class DBConnector {
       try{
          conn = DriverManager.getConnection(DB_URL,USER,PASS);
          String sql =
-         "SELECT * FROM movie_pedia.users\n" +
-         "WHERE email = ? AND user_password = ?";
+         "SELECT * FROM film_pedia.film_user\n" +
+         "WHERE user_email = ? AND user_password = ?";
 
          pstmt = conn.prepareStatement(sql);
 
@@ -195,8 +167,8 @@ public class DBConnector {
 
          while (rs.next()) {
             int id = rs.getInt("id");
-            String userEmail = rs.getString("email");
-            String fullName = rs.getString("full_name");
+            String userEmail = rs.getString("user_email");
+            String fullName = rs.getString("user_name");
 
             userMatch = new User(id, userEmail, fullName);
          }
