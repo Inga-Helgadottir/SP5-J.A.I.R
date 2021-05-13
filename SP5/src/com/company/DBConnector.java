@@ -2,7 +2,9 @@ package com.company;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.regex.Pattern; //todo Move to where checkIfEmailIsValid() is moved
+import java.util.regex.Matcher; //todo Move to where checkIfEmailIsValid() is moved
 
 public class DBConnector {
 
@@ -269,7 +271,7 @@ public class DBConnector {
 
       boolean signedUp = false;
 
-      if(!checkSignUpEmail(email)){
+      if(!checkIfEmailExists(email)){
          try{
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
@@ -295,7 +297,7 @@ public class DBConnector {
        return signedUp;
    }
 
-   private static boolean checkSignUpEmail(String email){
+   private static boolean checkIfEmailExists(String email){
        boolean alreadyRegistered = false;
 
       Connection conn = null;
@@ -339,6 +341,16 @@ public class DBConnector {
       }
 
        return alreadyRegistered;
+   }
+
+   // todo move checkIfEmailIsValid() to where user signsUp
+   private boolean checkIfEmailIsValid(String email){
+      String regex = "^(.+)@(.+)$";
+      Pattern pattern = Pattern.compile(regex);
+
+      Matcher matcher = pattern.matcher(email);
+
+      return matcher.matches(); // Returns true is the email matches the pattern else false
    }
 
 //    public Film readFilm(){
