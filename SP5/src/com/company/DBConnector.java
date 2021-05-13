@@ -263,6 +263,84 @@ public class DBConnector {
       }
    }
 
+   public static boolean signUp(String email, String password, String fullName){
+      Connection conn = null;
+      PreparedStatement pstmt = null;
+
+      boolean signedUp = false;
+
+      if(!checkSignUpEmail(email)){
+         try{
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            String sql =
+            "INSERT INTO film_user(user_email, user_password, user_name)\n" +
+            "VALUES(?, ?, ?)";
+
+            pstmt = conn.prepareStatement(sql);
+
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
+            pstmt.setString(3, fullName);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+
+            signedUp = true;
+         }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+         }
+      }
+
+       return signedUp;
+   }
+
+   private static boolean checkSignUpEmail(String email){
+       boolean alreadyRegistered = false;
+
+      Connection conn = null;
+      PreparedStatement pstmt = null;
+
+      try{
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);
+         String sql =
+         "SELECT user_email FROM film_pedia.film_user\n" +
+         "WHERE user_email = ?";
+
+         pstmt = conn.prepareStatement(sql);
+
+         pstmt.setString(1, email);
+
+         ResultSet rs = pstmt.executeQuery();
+
+         while (rs.next()) {
+            alreadyRegistered = true;
+         }
+
+         rs.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         try{
+            if(pstmt!=null)
+               pstmt.close();
+         }catch(SQLException se2){
+         }
+
+         try{
+            if(conn!=null){
+               conn.close();
+            }
+         }catch(SQLException se){
+            se.printStackTrace();
+         }
+      }
+
+       return alreadyRegistered;
+   }
+
 //    public Film readFilm(){
 //
 //    }
