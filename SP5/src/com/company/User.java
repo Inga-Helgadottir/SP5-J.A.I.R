@@ -7,6 +7,7 @@ public class User {
     private String email;
     private String password;
     private String name;
+
     private ArrayList<Film> likedFilms = new ArrayList<Film>();
 
     public User(String email, String password, String name) {
@@ -20,6 +21,10 @@ public class User {
         this.id = id;
         this.email = email;
         this.name = name;
+    }
+
+    public int getId(){
+        return id;
     }
 
     public String getEmail() {
@@ -44,5 +49,9 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ArrayList<Film> getLikedFilms() {
+        return likedFilms;
     }
 }
