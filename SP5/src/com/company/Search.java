@@ -14,7 +14,11 @@ public class Search {
         db.seeAllFilms();
     }
 
-//    public ArrayList<Film> getAllFilmsofGenre(){
-//
-//    }
+    public void getAllFilmsofGenre(String genre){
+        db.getFilmByGenre(genre);
+    }
+
+    public void getAllFromLikedList(){
+        db.showLikedList();
+    }
 }
