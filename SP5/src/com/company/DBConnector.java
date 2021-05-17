@@ -7,12 +7,11 @@ public class DBConnector {
 
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-   static final String DB_URL = "jdbc:mysql://localhost:3307/film_pedia"; // REMEMBER TO CHANGE PORT NUMBER
+   static final String DB_URL = "jdbc:mysql://localhost:3306/film_pedia"; // REMEMBER TO CHANGE PORT NUMBER
 
    //  Database credentials
    static final String USER = "root";
-   static final String PASS = "kisshu25"; // REMEMBER TO CHANGE PASSWORD!
-
+   static final String PASS = "Password"; // REMEMBER TO CHANGE PASSWORD!
 
    public static User getUser(String email, String password){
       Connection conn = null;
@@ -288,10 +287,10 @@ public class DBConnector {
             String fg = rs.getString("film_genre");
             String sfg = rs.getString("secondary_film_genre");
             String fyor = rs.getString("film_year_of_release");
+            String fd = rs.getString("film_description");
             String fi = rs.getString("film_image");
             //--------------------------------------------------------------------------------
             System.out.println("this will be showed with JPanel later");
-            System.out.print(fn + " " + fg + " " + sfg + " " + fyor + " " + fi + "\n");
          }
          //STEP 6: Clean-up environment
          rs.close();
@@ -326,7 +325,7 @@ public class DBConnector {
       }//end try
    }
 
-   public void getFilmByName(String name){
+   public Film getFilmByName(String name){
       Connection conn = null;
       Statement stmt = null;
       try
@@ -349,16 +348,19 @@ public class DBConnector {
          //STEP 5: Extract data from result set
          while (rs.next())
          {
+            int id = rs.getInt("id");
             String fn = rs.getString("film_name");
             String fg = rs.getString("film_genre");
             String sfg = rs.getString("secondary_film_genre");
             String fyor = rs.getString("film_year_of_release");
+            String fd = rs.getString("film_description");
+            String fimg = rs.getString("film_image");
             //--------------------------------------------------------------------------------
             if(fn.equals(name)){
                System.out.println("here we will show the movie info with JPanel");
-               //Display values
-               System.out.print(fn + " " + fg + " " + sfg + " " + fyor + "\n");
-            }
+               Film film = new Film(id, fn, fd, fyor, fimg);
+               return film;
+             }
 
          }
          //STEP 6: Clean-up environment
@@ -392,6 +394,7 @@ public class DBConnector {
             se.printStackTrace();
          }//end finally try
       }//end try
+      return null;
    }
 
    public void getFilmByGenre(String genre){
@@ -421,11 +424,11 @@ public class DBConnector {
             String fg = rs.getString("film_genre");
             String sfg = rs.getString("secondary_film_genre");
             String fyor = rs.getString("film_year_of_release");
+            String fd = rs.getString("film_description");
+            String fimg = rs.getString("film_image");
             //--------------------------------------------------------------------------------
             if(fg.equals(genre) || sfg.equals(genre)){
                System.out.println("here we will show the movie info with JPanel");
-               //Display values
-               System.out.print(fn + " " + fg + " " + sfg + " " + fyor + "\n");
             }
 
          }
@@ -543,10 +546,11 @@ public class DBConnector {
             String fg = rs.getString("film_genre");
             String sfg = rs.getString("secondary_film_genre");
             String fyor = rs.getString("film_year_of_release");
+            String fd = rs.getString("film_description");
+            String fimg = rs.getString("film_image");
             //--------------------------------------------------------------------------------
             if (fi.equals(id)) {
                System.out.println("this will be showed with JPanel later");
-               System.out.print(fn + " " + fg + " " + sfg + " " + fyor + "\n");
             }
          }
          rs.close();
