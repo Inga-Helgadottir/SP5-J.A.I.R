@@ -4,6 +4,7 @@ import com.company.Film;
 import com.company.DBConnector;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -91,25 +92,39 @@ public class HomeCard {
 
    private static JPanel createMovieMatchCard(){
       JPanel movieMatchCard = new JPanel();
-      movieMatchCard.setBackground(Color.green);
+
+      if(movieSearchResult != null){
+         JLabel searchResult = new JLabel();
+         searchResult.setText(movieSearchResult.getTitle());
+         movieMatchCard.add(searchResult);
+      }
+
+      //todo: Remove -------------------------------------------------------------
+
+      movieMatchCard.setBackground(Color.green); //todo: Remember to remove
       //todo: Remove background color and replace with movie title and img
       //todo: Remove placeholderBtn and replace with the movie cover
       JButton placeholderBtn = new JButton("See info");
 
       placeholderBtn.addActionListener(e -> {
-         GUI.infoCard = InfoCard.createInfoCard(movieSearchResult);
+         GUI.mainContainer.add(InfoCard.createInfoCard(movieSearchResult), "INFO_CARD");
          GUI.insideAppContentLayout.show(GUI.mainContainer, "INFO_CARD");
       });
 
       movieMatchCard.add(placeholderBtn); //todo: Remove
 
+      //todo: Remove -------------------------------------------------------------
+
       return movieMatchCard;
    }
 
    private static JPanel createMovieNoMatchCard(){
-      JPanel movieNoMatchCard = new JPanel();
+      JPanel movieNoMatchCard = new JPanel(new BorderLayout());
       movieNoMatchCard.setBackground(Color.red);
-      //todo: Remove background color and replace with a message accompanied with an img
+
+      JLabel msg = new JLabel("Sorry, no movie from our database seems to match your search input...");
+      msg.setHorizontalAlignment(SwingConstants.CENTER);
+      movieNoMatchCard.add(msg,  BorderLayout.CENTER);
 
       return movieNoMatchCard;
    }
