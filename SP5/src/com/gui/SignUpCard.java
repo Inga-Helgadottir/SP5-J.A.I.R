@@ -11,6 +11,15 @@ public class SignUpCard {
    public static JPanel createSignInCard(){
       JPanel signInCard = new JPanel();
 
+      //todo: Remove or style the placeholder button
+      JButton placeholderBtn = new JButton("Cancel signUp");
+
+      placeholderBtn.addActionListener(e -> {
+         GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD");
+      });
+
+      signInCard.add(placeholderBtn); //todo: Remove
+
       return signInCard;
    }
 

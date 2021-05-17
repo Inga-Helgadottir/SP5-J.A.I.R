@@ -12,6 +12,8 @@ public class GUI {
    final String SIGN_IN_CARD = "Card containing signIn content";
    final String SIGN_UP_CARD = "Card containing signUp content";
 
+   static JPanel outsideAppCard;
+
    static JPanel signInCard;
    static JPanel signUpCard;
 
@@ -37,9 +39,9 @@ public class GUI {
       appWindow.setLayout(mainAppLayout);
       JPanel outsideAppCard = createOutsideAppCard();
       JPanel insideAppCard = createInsideAppCard();
-      appWindow.add(outsideAppCard, OUTSIDE_APP_CARD);
-      appWindow.add(insideAppCard, INSIDE_APP_CARD);
-      mainAppLayout.show(appWindow.getContentPane(), INSIDE_APP_CARD); //todo Change back to OUTSIDE_APP_CARD when done
+      appWindow.add(outsideAppCard, "OUTSIDE_APP_CARD");
+      appWindow.add(insideAppCard, "INSIDE_APP_CARD");
+      mainAppLayout.show(appWindow.getContentPane(), "INSIDE_APP_CARD"); //todo Change back to OUTSIDE_APP_CARD when done
 
       appWindow.setVisible(true);
       appWindow.setIconImage(setAppIcon().getImage());
@@ -51,7 +53,7 @@ public class GUI {
    }
 
    private JPanel createOutsideAppCard(){
-      JPanel outsideAppCard = new JPanel(outSideAppContentLayout);
+      outsideAppCard = new JPanel(outSideAppContentLayout);
       outsideAppCard.setBackground(ColorManager.yellow);
 
       signInCard = SignInCard.createSignInCard();
