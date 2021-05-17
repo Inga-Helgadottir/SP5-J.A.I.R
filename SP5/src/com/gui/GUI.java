@@ -4,28 +4,28 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI {
-   CardLayout mainAppLayout = new CardLayout();
+   final static CardLayout mainAppLayout = new CardLayout();
    final String OUTSIDE_APP_CARD = "Card containing login and signup form content";
    final String INSIDE_APP_CARD = "Card containing home, info and liked content";
 
-   CardLayout outSideAppContentLayout = new CardLayout();
+   final static CardLayout outSideAppContentLayout = new CardLayout();
    final String SIGN_IN_CARD = "Card containing signIn content";
    final String SIGN_UP_CARD = "Card containing signUp content";
 
-   JPanel signInCard;
-   JPanel signUpCard;
+   static JPanel signInCard;
+   static JPanel signUpCard;
 
-   CardLayout insideAppContentLayout = new CardLayout();
+   final static CardLayout insideAppContentLayout = new CardLayout();
    final String HOME_CARD = "Card containing home content";
    final String INFO_CARD = "Card containing info about a movie";
    final String USER_CARD = "Card containing info about the user and a logout button";
    final String LIKED_CARD = "Card containing liked content";
 
-   JPanel mainContainer;
-   JPanel homeCard;
-   JPanel infoCard;
-   JPanel userCard;
-   JPanel likedCard;
+   static JPanel mainContainer;
+   static JPanel homeCard;
+   static JPanel infoCard;
+   static JPanel userCard;
+   static JPanel likedCard;
 
    public void createAppWindow(){
       JFrame appWindow = new JFrame();
@@ -71,7 +71,7 @@ public class GUI {
 
       mainContainer = new JPanel(insideAppContentLayout);
          homeCard = HomeCard.createHomeCard();
-         infoCard = InfoCard.createInfoCard();
+         infoCard = InfoCard.createInfoCard(null);
          userCard = UserCard.createUserCard();
          likedCard = LikedCard.createLikedCard();
 

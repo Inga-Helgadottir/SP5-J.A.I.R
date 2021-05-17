@@ -265,7 +265,6 @@ public class DBConnector {
       return match;
    }
 
-
    public void seeAllFilms(){
       Connection conn = null;
       Statement stmt = null;

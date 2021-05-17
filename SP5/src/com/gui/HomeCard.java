@@ -31,7 +31,7 @@ public class HomeCard{
       JPanel searchFieldContainer = createSearchField();
       homeMainContainer = new JPanel(homeCardLayout);
          movieRecommendationsCard = createMovieRecommendationsCard();
-         movieMatchCard = createMovieMatchCard();
+         movieMatchCard = createMovieMatchCard(null);
          movieNoMatchCard = createMovieNoMatchCard();
 
          homeMainContainer.add(movieRecommendationsCard, "MOVIE_RECOMMENDATIONS");
@@ -67,6 +67,7 @@ public class HomeCard{
             movieSearchResult = DBConnector.findFilm(userInput);
 
             if(movieSearchResult != null){
+               movieMatchCard = createMovieMatchCard(movieSearchResult);
                homeCardLayout.show(homeMainContainer, "MOVIE_MATCH_CARD");
             }else{
                homeCardLayout.show(homeMainContainer, "MOVIE_NO_MATCH_CARD");
@@ -87,17 +88,25 @@ public class HomeCard{
       return movieRecommendationCard;
    }
 
-   private static JPanel createMovieMatchCard(){
+   private static JPanel createMovieMatchCard(Film film){
       JPanel movieMatchCard = new JPanel();
-      movieMatchCard.setBackground(Color.red);
+      movieMatchCard.setBackground(Color.green);
       //todo: Remove background color and replace with movie title and img
+      //todo: Remove placeholderBtn and replace with the movie cover
+      JButton placeholderBtn = new JButton("See info");
+      placeholderBtn.addActionListener(e -> {
+         GUI.infoCard = InfoCard.createInfoCard(film);
+         GUI.insideAppContentLayout.show(GUI.mainContainer, "INFO_CARD");
+      });
+
+      movieMatchCard.add(placeholderBtn); //todo: Remove
 
       return movieMatchCard;
    }
 
    private static JPanel createMovieNoMatchCard(){
       JPanel movieNoMatchCard = new JPanel();
-      movieNoMatchCard.setBackground(Color.green);
+      movieNoMatchCard.setBackground(Color.red);
       //todo: Remove background color and replace with a message accompanied with an img
 
       return movieNoMatchCard;
