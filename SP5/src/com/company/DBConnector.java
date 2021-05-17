@@ -3,9 +3,6 @@ package com.company;
 import java.sql.*;
 import java.util.ArrayList;
 
-import java.util.regex.Pattern; //todo Move to where checkIfEmailIsValid() is moved
-import java.util.regex.Matcher; //todo Move to where checkIfEmailIsValid() is moved
-
 public class DBConnector {
 
    // JDBC driver name and database URL
@@ -96,10 +93,11 @@ public class DBConnector {
          while (rs.next()){
             int id = rs.getInt("film_id");
             String title = rs.getString("film_name");
-            String genre1 = rs.getString("film_genre");
-            String genre2 = rs.getString("secondary_film_genre");
+            String summary = rs.getString("film_description");
             String releaseDate = rs.getString("film_year_of_release");
             String imgPath = rs.getString("film_image");
+            String genre1 = rs.getString("film_genre");
+            String genre2 = rs.getString("secondary_film_genre");
 
             ArrayList<String> genres = new ArrayList<String>(); //todo Consider creating a table for genres
             genres.add(genre1);
@@ -108,7 +106,8 @@ public class DBConnector {
             ArrayList<String> directors = new ArrayList<String>(); //todo Needs a connection table to films to get data
             ArrayList<String> actors = new ArrayList<String>(); //todo Needs a connection table to films to get data
 
-            user.getLikedFilms().add(new Film(id, title, releaseDate, imgPath, directors, actors, genres));
+            user.getLikedFilms().add(new Film(id, title, summary, releaseDate, imgPath));
+            //user.getLikedFilms().add(new Film(id, title, releaseDate, imgPath, directors, actors, genres));
          }
 
          rs.close();
@@ -211,14 +210,59 @@ public class DBConnector {
        return alreadyRegistered;
    }
 
-   // todo move checkIfEmailIsValid() to where user signsUp
-   private boolean checkIfEmailIsValid(String email){
-      String regex = "^(.+)@(.+)$";
-      Pattern pattern = Pattern.compile(regex);
+   public static Film findFilm(String userInput){
+      Connection conn = null;
+      PreparedStatement pstmt = null;
 
-      Matcher matcher = pattern.matcher(email);
+      Film match = null;
 
-      return matcher.matches(); // Returns true is the email matches the pattern else false
+      try{
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);
+         String sql =
+         "SELECT * FROM film_pedia.films\n" +
+         "WHERE films.film_name = ?";
+
+         pstmt = conn.prepareStatement(sql);
+
+         pstmt.setString(1, userInput);
+
+         ResultSet rs = pstmt.executeQuery();
+
+         while (rs.next()) {
+            int id = rs.getInt("id");
+            String title = rs.getString("film_name");
+            String summary = rs.getString("film_description");
+            String releaseDate = rs.getString("film_year_of_release");
+            String imgPath = rs.getString("film_image");
+            String genre1 = rs.getString("film_genre");
+            String genre2 = rs.getString("secondary_film_genre");
+
+
+            match = new Film(id, title, summary, releaseDate, imgPath);
+         }
+
+         rs.close();
+      }catch(SQLException se){
+         se.printStackTrace();
+      }catch(Exception e){
+         e.printStackTrace();
+      }finally{
+         try{
+            if(pstmt!=null)
+               pstmt.close();
+         }catch(SQLException se2){
+         }
+
+         try{
+            if(conn!=null){
+               conn.close();
+            }
+         }catch(SQLException se){
+            se.printStackTrace();
+         }
+      }
+
+      return match;
    }
 
 

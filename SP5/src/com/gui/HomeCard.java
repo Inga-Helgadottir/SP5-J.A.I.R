@@ -1,5 +1,8 @@
 package com.gui;
 
+import com.company.Film;
+import com.company.DBConnector;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class HomeCard{
+
+   static JPanel homeMainContainer;
+
    static CardLayout homeCardLayout = new CardLayout();
    static final String MOVIE_RECOMMENDATIONS = "Card containing movie recommendations sorted by genres";
    static final String MOVIE_MATCH_CARD = "Card containing the movie that was searched";
@@ -16,15 +22,14 @@ public class HomeCard{
    static JPanel movieMatchCard;
    static JPanel movieNoMatchCard;
 
-   //Film movieSearchResult = null;
+   static Film movieSearchResult = null;
 
    public static JPanel createHomeCard(){
       JPanel homeCard = new JPanel(new BorderLayout());
       homeCard.setBackground(Color.gray);
 
       JPanel searchFieldContainer = createSearchField();
-      JPanel homeMainContainer = new JPanel();
-      homeMainContainer.setLayout(homeCardLayout);
+      homeMainContainer = new JPanel(homeCardLayout);
          movieRecommendationsCard = createMovieRecommendationsCard();
          movieMatchCard = createMovieMatchCard();
          movieNoMatchCard = createMovieNoMatchCard();
@@ -56,22 +61,17 @@ public class HomeCard{
       searchField.addActionListener( new AbstractAction() {
          @Override
          public void actionPerformed(ActionEvent e) {
-            System.out.println(searchField.getText()); //todo: Remove
 
-            String userInput = searchField.getText().toLowerCase();
-            /*todo: Connect to the database and try to find a match.
-               If a match is found, create a movie obj and return it here.
-               If no match was found return null.
-               */
+            String userInput = searchField.getText();
 
-            //movieSearchResult = DBConnector.findFilm(userInput);
-            /*
+            movieSearchResult = DBConnector.findFilm(userInput);
+
             if(movieSearchResult != null){
-               homeCardLayout.show(homeCard, MOVIE_MATCH_CARD);
+               homeCardLayout.show(homeMainContainer, "MOVIE_MATCH_CARD");
             }else{
-               homeCardLayout.show(homeCard, MOVIE_MATCH_CARD);
+               homeCardLayout.show(homeMainContainer, "MOVIE_NO_MATCH_CARD");
             }
-            */
+
          }
       });
 
@@ -89,12 +89,16 @@ public class HomeCard{
 
    private static JPanel createMovieMatchCard(){
       JPanel movieMatchCard = new JPanel();
+      movieMatchCard.setBackground(Color.red);
+      //todo: Remove background color and replace with movie title and img
 
       return movieMatchCard;
    }
 
    private static JPanel createMovieNoMatchCard(){
       JPanel movieNoMatchCard = new JPanel();
+      movieNoMatchCard.setBackground(Color.green);
+      //todo: Remove background color and replace with a message accompanied with an img
 
       return movieNoMatchCard;
    }

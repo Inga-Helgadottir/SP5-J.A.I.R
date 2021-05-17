@@ -4,6 +4,7 @@ import com.gui.GUI;
 import java.util.ArrayList;
 
 public class Main {
+
     public static User currentUser = null;
     public static ArrayList<Film> films;
 
@@ -12,7 +13,4 @@ public class Main {
         gui.createAppWindow();
     }
 
-    public static void startMenu(){
-
-    }
 }

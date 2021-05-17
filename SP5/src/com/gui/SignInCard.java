@@ -1,5 +1,7 @@
 package com.gui;
 
+import com.company.DBConnector;
+
 import javax.swing.*;
 
 public class SignInCard {
