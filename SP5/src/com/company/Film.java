@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Film {
     private int id;
     private String title;
+
+    public String getSummary() {
+        return summary;
+    }
+
     private String summary;
     private String releaseDate;
     private String imgPath;
