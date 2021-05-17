@@ -6,13 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoCard {
-//   private static String nameText = "The Mitchells vs the Machines";
-//   private static String imgPath = "src/Film/The Mitchells vs the Machines.jpg";
-//   private static String aboutText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.";
-//   private static String genreText = "Animation, Comedy";
-//   private static String yearText = "30 April 2021";
-
-
    /*
        todo:
         - make img bigger
@@ -21,13 +14,17 @@ public class InfoCard {
     */
 
    public static JPanel createInfoCard(Film film){
+//      film = new Film(25, "Luca", "Lorem ipsum dolor sit amet, " +
+//      "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore " +
+//      "magna aliqua. Ut enim ad minim veniam.", "30 April 2021", "src/Film/Luca.jpg");
+
       JPanel infoCard = new JPanel(new GridLayout(1, 2));
       infoCard.setBackground(ColorManager.paleYellow);
 
       String font = "MV Bold";
       JPanel panel = new JPanel();
       panel.setLocation(0, 0);
-      panel.setBackground(new Color(255, 255, 255));
+      panel.setBackground(ColorManager.white);
 
       JPanel panel2 = new JPanel() {
          @Override
@@ -36,10 +33,10 @@ public class InfoCard {
          };
       };
 
-      panel2.setBackground(new Color(255, 255, 255));
+      panel2.setBackground(ColorManager.white);
 
       if(film != null){
-         System.out.println( "THE MOVIE WAS SAFELY DELIVERED!!!" + film.getImgPath());
+         System.out.println("Movie is not null: " + film.getImgPath());
          panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
          panel2.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
 
