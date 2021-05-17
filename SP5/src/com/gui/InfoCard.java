@@ -21,12 +21,8 @@ public class InfoCard {
     */
 
    public static JPanel createInfoCard(Film film){
-
       JPanel infoCard = new JPanel(new GridLayout(1, 2));
-      infoCard.setBackground(ColorManager.pink);
-//      EventQueue.invokeLater(() -> {
-//         infoCard.updateUI();
-//      });
+      infoCard.setBackground(ColorManager.paleYellow);
 
       String font = "MV Bold";
       JPanel panel = new JPanel();
@@ -43,6 +39,7 @@ public class InfoCard {
       panel2.setBackground(new Color(255, 255, 255));
 
       if(film != null){
+         System.out.println( "THE MOVIE WAS SAFELY DELIVERED!!!" + film.getImgPath());
          panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
          panel2.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
 
@@ -84,9 +81,6 @@ public class InfoCard {
          infoCard.add(panel2, BorderLayout.WEST);
          infoCard.setVisible(true);
       }
-
-
-//      infoCard.pack();
 
       return infoCard;
    }

@@ -4,15 +4,18 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GUI {
+
+   static JFrame appWindow;
    final static CardLayout mainAppLayout = new CardLayout();
    final String OUTSIDE_APP_CARD = "Card containing login and signup form content";
    final String INSIDE_APP_CARD = "Card containing home, info and liked content";
 
+   static JPanel outsideAppCard;
+   static JPanel insideAppCard;
+
    final static CardLayout outSideAppContentLayout = new CardLayout();
    final String SIGN_IN_CARD = "Card containing signIn content";
    final String SIGN_UP_CARD = "Card containing signUp content";
-
-   static JPanel outsideAppCard;
 
    static JPanel signInCard;
    static JPanel signUpCard;
@@ -30,15 +33,15 @@ public class GUI {
    static JPanel likedCard;
 
    public void createAppWindow(){
-      JFrame appWindow = new JFrame();
+      appWindow = new JFrame();
       appWindow.setTitle("My movie DB");
       appWindow.setSize(800, 800);
       appWindow.getContentPane().setBackground(ColorManager.black);
 
       // Manage mainAppCards
       appWindow.setLayout(mainAppLayout);
-      JPanel outsideAppCard = createOutsideAppCard();
-      JPanel insideAppCard = createInsideAppCard();
+      outsideAppCard = createOutsideAppCard();
+      insideAppCard = createInsideAppCard();
       appWindow.add(outsideAppCard, "OUTSIDE_APP_CARD");
       appWindow.add(insideAppCard, "INSIDE_APP_CARD");
       mainAppLayout.show(appWindow.getContentPane(), "INSIDE_APP_CARD"); //todo Change back to OUTSIDE_APP_CARD when done

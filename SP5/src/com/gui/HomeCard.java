@@ -6,10 +6,11 @@ import com.company.DBConnector;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class HomeCard{
+public class HomeCard {
 
    static JPanel homeMainContainer;
 
@@ -31,7 +32,7 @@ public class HomeCard{
       JPanel searchFieldContainer = createSearchField();
       homeMainContainer = new JPanel(homeCardLayout);
          movieRecommendationsCard = createMovieRecommendationsCard();
-         movieMatchCard = createMovieMatchCard(null);
+         movieMatchCard = createMovieMatchCard();
          movieNoMatchCard = createMovieNoMatchCard();
 
          homeMainContainer.add(movieRecommendationsCard, "MOVIE_RECOMMENDATIONS");
@@ -67,7 +68,7 @@ public class HomeCard{
             movieSearchResult = DBConnector.findFilm(userInput);
 
             if(movieSearchResult != null){
-               movieMatchCard = createMovieMatchCard(movieSearchResult);
+               movieMatchCard = createMovieMatchCard();
                homeCardLayout.show(homeMainContainer, "MOVIE_MATCH_CARD");
             }else{
                homeCardLayout.show(homeMainContainer, "MOVIE_NO_MATCH_CARD");
@@ -88,14 +89,15 @@ public class HomeCard{
       return movieRecommendationCard;
    }
 
-   private static JPanel createMovieMatchCard(Film film){
+   private static JPanel createMovieMatchCard(){
       JPanel movieMatchCard = new JPanel();
       movieMatchCard.setBackground(Color.green);
       //todo: Remove background color and replace with movie title and img
       //todo: Remove placeholderBtn and replace with the movie cover
       JButton placeholderBtn = new JButton("See info");
+
       placeholderBtn.addActionListener(e -> {
-         GUI.infoCard = InfoCard.createInfoCard(film);
+         GUI.infoCard = InfoCard.createInfoCard(movieSearchResult);
          GUI.insideAppContentLayout.show(GUI.mainContainer, "INFO_CARD");
       });
 

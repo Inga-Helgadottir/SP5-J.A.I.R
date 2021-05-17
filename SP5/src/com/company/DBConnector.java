@@ -76,6 +76,7 @@ public class DBConnector {
          "SELECT film_user.id AS user_id, " +
          "films.id AS film_id, " +
          "films.film_name, " +
+         "film_description, " +
          "film_genre, " +
          "films.secondary_film_genre, " +
          "films.film_year_of_release, " +

@@ -1,6 +1,7 @@
 package com.gui;
 
 import com.company.DBConnector;
+import com.company.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,6 +47,7 @@ public class SignInCard {
 
    public static JPanel createSignInCard(){
       JPanel centerPanel = new JPanel();
+
       centerPanel.setLayout(null);
       signInTitle = new JLabel("Sign in");
       signInTitle.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -100,17 +102,13 @@ public class SignInCard {
             String user = userText.getText();
             String password = passwordText.getText();
 
-                    /*Main.currentUser = DBConnector.getUser(user, password);
+            Main.currentUser = DBConnector.getUser(user, password);
 
-                    if (Main.currentUser == null) {
-                        success.setText("Failed to login. Incorrect email or password...");
-                    }else{
-                        success.setText("Login successful! Welcome back " + Main.currentUser.getName());
-                        //kalde start menuen herfra
-                        Search ser = new Search();
-//            ser.seeAllFilms();
-                        ser.findFilmByName("lala")*/
-
+           if (Main.currentUser == null) {
+               success.setText("Failed to login. Incorrect email or password...");
+           }else {
+              GUI.mainAppLayout.show(GUI.appWindow.getContentPane(), "INSIDE_APP_CARD");
+           }
          }
       });
 
