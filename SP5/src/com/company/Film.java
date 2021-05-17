@@ -5,22 +5,19 @@ import java.util.ArrayList;
 public class Film {
     private int id;
     private String title;
+    private String summary;
     private String releaseDate;
     private String imgPath;
     private ArrayList<String> directors;
     private ArrayList<String> actors;
     private ArrayList<String> genres;
 
-
-    public Film(int id, String title, String releaseDate, String imgPath, ArrayList<String> directors,
-                ArrayList<String> actors, ArrayList<String> genres) {
+    public Film(int id, String title, String summary, String releaseDate, String imgPath){
         this.id = id;
         this.title = title;
+        this.summary = summary;
         this.releaseDate = releaseDate;
         this.imgPath = imgPath;
-        this.directors = new ArrayList<String>(directors);
-        this.actors = new ArrayList<String>(actors);
-        this.genres = new ArrayList<String>(genres);
     }
 
     public int getId() {
