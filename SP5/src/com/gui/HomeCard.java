@@ -69,7 +69,7 @@ public class HomeCard {
             movieSearchResult = DBConnector.findFilm(userInput);
 
             if(movieSearchResult != null){
-               movieMatchCard = createMovieMatchCard();
+               homeMainContainer.add(movieMatchCard = createMovieMatchCard(), "MOVIE_MATCH_CARD");
                homeCardLayout.show(homeMainContainer, "MOVIE_MATCH_CARD");
             }else{
                homeCardLayout.show(homeMainContainer, "MOVIE_NO_MATCH_CARD");
