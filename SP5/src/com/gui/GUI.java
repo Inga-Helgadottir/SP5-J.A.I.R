@@ -108,7 +108,11 @@ public class GUI {
 
       // Add eventListeners to the buttons
       homeBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"HOME_CARD"));
+
+      mainContainer.add(UserCard.createUserCard(), "USER_CARD");
       userBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"USER_CARD"));
+
+      mainContainer.add(LikedCard.createLikedCard(), "LIKED_CARD");
       likedBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"LIKED_CARD"));
 
       nav.add(homeBtn);
