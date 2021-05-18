@@ -99,8 +99,6 @@ public class GUI {
 
    private JPanel createNavComponent(){
       JPanel nav = new JPanel(new GridLayout(1, 3));
-
-
       nav.setBackground(ColorManager.pink);
 
       // Create buttons
