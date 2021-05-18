@@ -51,6 +51,9 @@ public class InfoCard {
          JLabel about4 = new JLabel(arr[3]);
          about4.setFont(new Font(font, Font.LAYOUT_LEFT_TO_RIGHT, 20));
 
+         GUI g = new GUI();
+         JButton likedBtn = g.createNavBtn("src\\img\\navIcons\\thumbs-up-solid.png");
+
          panel.add(img);
          panel2.add(label);
          panel2.add(about);
@@ -58,6 +61,7 @@ public class InfoCard {
          panel2.add(about3);
          panel2.add(about4);
          panel2.add(year);
+         panel2.add(likedBtn);
 
          infoCard.add(panel, BorderLayout.WEST);
          infoCard.add(panel2, BorderLayout.WEST);
