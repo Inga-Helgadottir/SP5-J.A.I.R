@@ -46,6 +46,7 @@ public class UserCard {
 
       signOut.addActionListener(e -> {
          Main.currentUser = null;
+         GUI.insideAppContentLayout.show(GUI.mainContainer,"HOME_CARD");
          GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD");
 
          SignInCard.userText.setText("");
