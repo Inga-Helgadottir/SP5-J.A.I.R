@@ -95,7 +95,6 @@ public class HomeCard {
       for (String a: arr) {
          DBConnector db = new DBConnector();
          Film f = db.findFilm(a);
-         System.out.println(f.toString());
          JLabel img = new JLabel(new ImageIcon(f.getImgPath()));
          movieRecommendationCard.add(img);
          img.addMouseListener(new MouseListener()

@@ -103,8 +103,8 @@ public class SignUpCard {
 
       c.add(alreadyHaveAccount);
       success1= new JLabel("");
-      success1.setBounds(10, 130, 300, 25);
-      success1.setLocation(100,360);
+      success1.setBounds(10, 130, 500, 25);
+      success1.setLocation(100,380);
       success1.setForeground(Color.red);
       c.add(success1);
 
@@ -120,12 +120,17 @@ public class SignUpCard {
             }else if(!checkIfEmailIsValid(email)){
                success1.setText("The provided email was not valid. Please check it again...");
             }else{
-               DBConnector.signUp(email, password, user);
-               success1.setText("You have now been successfully registered!");
+               boolean signedUp = DBConnector.signUp(email, password, user);
 
-               textPasswordField.setText("");
-               textFieldName.setText("");
-               textFieldemail.setText("");
+               if(signedUp == false){
+                  success1.setText("New acc. was not created. The email provided is already registered in our database...");
+               }else{
+                  success1.setText("You have now been successfully registered!");
+
+                  textPasswordField.setText("");
+                  textFieldName.setText("");
+                  textFieldemail.setText("");
+               }
             }
          }
       });
