@@ -44,7 +44,7 @@ public class GUI {
       insideAppCard = createInsideAppCard();
       appWindow.add(outsideAppCard, "OUTSIDE_APP_CARD");
       appWindow.add(insideAppCard, "INSIDE_APP_CARD");
-      mainAppLayout.show(appWindow.getContentPane(), "INSIDE_APP_CARD"); //todo Change back to OUTSIDE_APP_CARD when done
+      mainAppLayout.show(appWindow.getContentPane(), "OUTSIDE_APP_CARD"); //todo Change back to OUTSIDE_APP_CARD when done
 
       appWindow.setVisible(true);
       appWindow.setIconImage(setAppIcon().getImage());

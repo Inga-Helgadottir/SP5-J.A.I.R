@@ -113,22 +113,26 @@ public class SignUpCard {
          public void actionPerformed(ActionEvent e) {
             String user = textFieldName.getText();
             String email = textFieldemail.getText();
-            String passeword = textPasswordField.getText();
-            if(user==""|| email==""|| passeword==""){
-               System.out.println("");
+            String password = textPasswordField.getText();
+
+            if(user.equals("") || email.equals("") || password.equals("")){
+               success1.setText("Please fill out all the input fields...");
+            }else if(!checkIfEmailIsValid(email)){
+               success1.setText("The provided email was not valid. Please check it again...");
+            }else{
+               DBConnector.signUp(email, password, user);
+               success1.setText("You have now been successfully registered!");
+
+               textPasswordField.setText("");
+               textFieldName.setText("");
+               textFieldemail.setText("");
             }
-            success1.setText("Your account has been created successfully.");
-            textPasswordField.setText("");
-            textFieldName.setText("");
-            textFieldemail.setText("");
 
          }
       });
 
       return c;
 
-//      JPanel signInCard = new JPanel();
-//
 //      //todo: Remove or style the placeholder button
 //      JButton placeholderBtn = new JButton("Cancel signUp");
 //
@@ -137,17 +141,15 @@ public class SignUpCard {
 //      });
 //
 //      signInCard.add(placeholderBtn); //todo: Remove
-//
-//      return signInCard;
    }
 
-   private boolean checkIfEmailIsValid(String email){
+   private static boolean checkIfEmailIsValid(String email){
       String regex = "^(.+)@(.+)$";
       Pattern pattern = Pattern.compile(regex);
 
       Matcher matcher = pattern.matcher(email);
 
-      return matcher.matches(); // Returns true is the email matches the pattern else false
+      return matcher.matches(); // Returns true if the email matches the pattern else false
    }
 
 }
