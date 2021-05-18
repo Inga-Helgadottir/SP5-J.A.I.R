@@ -54,4 +54,9 @@ public class User {
     public ArrayList<Film> getLikedFilms() {
         return likedFilms;
     }
+
+    public void setLikedFilms(Film film)
+    {
+        this.likedFilms.add(film);
+    }
 }

@@ -118,7 +118,10 @@ public class GUI {
       });
 
       mainContainer.add(LikedCard.createLikedCard(), "LIKED_CARD");
-      likedBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"LIKED_CARD"));
+      likedBtn.addActionListener(e -> {
+         mainContainer.add(LikedCard.createLikedCard(), "LIKED_CARD");
+         insideAppContentLayout.show(mainContainer,"LIKED_CARD");
+      });
 
       nav.add(homeBtn);
       nav.add(userBtn);

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
 
-    public static User currentUser = null;
+    public static User currentUser;
     public static ArrayList<Film> films;
 
     public static void main(String[] args) {

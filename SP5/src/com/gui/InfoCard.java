@@ -55,12 +55,18 @@ public class InfoCard {
 
          GUI g = new GUI();
          JButton likedBtn = g.createNavBtn("src\\img\\navIcons\\thumbs-up-solid.png");
+         JButton unLikedBtn = g.createNavBtn("src\\img\\navIcons\\thumbs-down-solid.png");
 
          int currentUserId = Main.currentUser.getId();
 
          likedBtn.addActionListener(e -> {
             DBConnector db = new DBConnector();
             db.addToLikedList(film.getId(), currentUserId);
+         });
+
+         unLikedBtn.addActionListener(e -> {
+            DBConnector db = new DBConnector();
+            db.removeFromLikedList(film.getId(), currentUserId);
          });
 
          panel.add(img);
@@ -71,6 +77,7 @@ public class InfoCard {
          panel2.add(about4);
          panel2.add(year);
          panel2.add(likedBtn);
+         panel2.add(unLikedBtn);
 
          infoCard.add(panel, BorderLayout.WEST);
          infoCard.add(panel2, BorderLayout.WEST);

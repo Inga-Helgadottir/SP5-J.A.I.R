@@ -64,7 +64,7 @@ public class DBConnector {
       return userMatch;
    }
 
-   private static void getUserLikedList(User user){
+   public static void getUserLikedList(User user){
       Connection conn = null;
       PreparedStatement pstmt = null;
 
@@ -106,8 +106,7 @@ public class DBConnector {
             ArrayList<String> directors = new ArrayList<String>(); //todo Needs a connection table to films to get data
             ArrayList<String> actors = new ArrayList<String>(); //todo Needs a connection table to films to get data
 
-            user.getLikedFilms().add(new Film(id, title, summary, releaseDate, imgPath));
-            //user.getLikedFilms().add(new Film(id, title, releaseDate, imgPath, directors, actors, genres));
+            user.setLikedFilms(new Film(id, title, summary, releaseDate, imgPath));
          }
 
          rs.close();
@@ -491,7 +490,7 @@ public class DBConnector {
             String fn = rs.getString("film_id");
             String fg = rs.getString("film_user_id");
             //-------------------------------------------------------------------------------
-            if(fg.equals(Main.currentUser.getId())){
+            if(fg.equals("1")){//change later to current users id
                getFilmById(fn);
             }
          }
@@ -529,7 +528,6 @@ public class DBConnector {
    }
 
    public void getFilmById(String id){
-      Film film;
       Connection conn = null;
       Statement stmt = null;
       try
@@ -542,7 +540,7 @@ public class DBConnector {
          ResultSet rs = stmt.executeQuery(sql);
 
          while (rs.next()) {
-            int fi = rs.getInt("id");
+            String fi = rs.getString("id");
             String fn = rs.getString("film_name");
             String fg = rs.getString("film_genre");
             String sfg = rs.getString("secondary_film_genre");
@@ -550,8 +548,8 @@ public class DBConnector {
             String fd = rs.getString("film_description");
             String fimg = rs.getString("film_image");
             //--------------------------------------------------------------------------------
-            if (String.valueOf(fi).equals(id)) {
-               film = new Film(fi, fn, fd, fyor, fimg);
+            if (fi.equals(id)) {
+               System.out.println("this will be showed with JPanel later");
             }
          }
          rs.close();
@@ -593,7 +591,7 @@ public class DBConnector {
       String sql = "INSERT INTO liked_list(film_id, film_user_id) " + "VALUES(?, ?)";
       try{
          boolean match = likelistMatch(filmId, userId);
-
+         System.out.println(match);
          if(!match){
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -608,7 +606,46 @@ public class DBConnector {
             User user = new User(Main.currentUser.getEmail(), Main.currentUser.getPassword(), Main.currentUser.getName());
             Film film = getAFilmById(String.valueOf(filmId));
             user.getLikedFilms().add(film);
+
          }
+      }catch (SQLException e) {
+         System.out.println(e.getCause());
+      } finally {
+         try {
+            if(rs != null)  rs.close();
+         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+         }
+      }
+   }
+
+   public void removeFromLikedList(int filmId, int userId)
+   {
+      Connection conn = null;
+      ResultSet rs = null;
+
+      String sql = "DELETE FROM liked_list WHERE film_user_id = ? AND film_id = ?;";
+      try{
+         //boolean match = likelistMatch(filmId, userId);
+         //System.out.println(match);
+
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+            System.out.println("Creating statement...");
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, filmId);
+
+            pstmt.addBatch();
+            pstmt.executeBatch();
+/*
+            User user = new User(Main.currentUser.getEmail(), Main.currentUser.getPassword(), Main.currentUser.getName());
+            Film film = getAFilmById(String.valueOf(filmId));
+            user.getLikedFilms().add(film);
+*/
+            Main.currentUser.getLikedFilms().clear();
+            getUserLikedList(Main.currentUser);
+
       }catch (SQLException e) {
          System.out.println(e.getCause());
       } finally {
