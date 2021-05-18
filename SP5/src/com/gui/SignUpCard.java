@@ -92,14 +92,14 @@ public class SignUpCard {
       alreadyAccount.setSize(600,30);
       alreadyAccount.setLocation(100,400);
       c.add(alreadyAccount);
-      alreadyHaveAccount = new JButton("Sign in here");
+      alreadyHaveAccount = new JButton("Return to signIn page");
       alreadyHaveAccount.setFont(new Font("Arial", Font.PLAIN, 15));
       alreadyHaveAccount.setSize(150, 20);
       alreadyHaveAccount.setLocation(100, 430);
 
-//      signIn.addActionListener(e -> {
-//         GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD"); // todo FIX
-//      });
+      alreadyHaveAccount.addActionListener(e -> {
+         GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD");
+      });
 
       c.add(alreadyHaveAccount);
       success1= new JLabel("");
@@ -132,15 +132,6 @@ public class SignUpCard {
       });
 
       return c;
-
-//      //todo: Remove or style the placeholder button
-//      JButton placeholderBtn = new JButton("Cancel signUp");
-//
-//      placeholderBtn.addActionListener(e -> {
-//         GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD");
-//      });
-//
-//      signInCard.add(placeholderBtn); //todo: Remove
    }
 
    private static boolean checkIfEmailIsValid(String email){
