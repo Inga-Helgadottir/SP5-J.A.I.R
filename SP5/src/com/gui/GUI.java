@@ -1,5 +1,7 @@
 package com.gui;
 
+import com.company.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -110,7 +112,10 @@ public class GUI {
       homeBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"HOME_CARD"));
 
       mainContainer.add(UserCard.createUserCard(), "USER_CARD");
-      userBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"USER_CARD"));
+      userBtn.addActionListener(e -> {
+         mainContainer.add(UserCard.createUserCard(), "USER_CARD");
+         insideAppContentLayout.show(mainContainer,"USER_CARD");
+      });
 
       mainContainer.add(LikedCard.createLikedCard(), "LIKED_CARD");
       likedBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"LIKED_CARD"));

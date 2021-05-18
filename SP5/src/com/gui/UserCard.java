@@ -27,10 +27,11 @@ public class UserCard {
       signOut.setLocation(100, 170);
 
       if(Main.currentUser != null){
-         System.out.println(Main.currentUser.getName());
-
          JLabel jLabelGetName = new JLabel(Main.currentUser.getName());
          JLabel jLabelGetMail = new JLabel(Main.currentUser.getEmail());
+
+         jLabelGetName.setBounds(150, 30, 200, 20);
+         jLabelGetMail.setBounds(350, 100, 200, 20);
 
          userCard.add(jLabelGetName);
          userCard.add(jLabelGetMail);
