@@ -1,6 +1,8 @@
 package com.gui;
 
+import com.company.DBConnector;
 import com.company.Film;
+import com.company.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,6 +55,13 @@ public class InfoCard {
 
          GUI g = new GUI();
          JButton likedBtn = g.createNavBtn("src\\img\\navIcons\\thumbs-up-solid.png");
+
+         int currentUserId = Main.currentUser.getId();
+
+         likedBtn.addActionListener(e -> {
+            DBConnector db = new DBConnector();
+            db.addToLikedList(25, currentUserId);
+         });
 
          panel.add(img);
          panel2.add(label);

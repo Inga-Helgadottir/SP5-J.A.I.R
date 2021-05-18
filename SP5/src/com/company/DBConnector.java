@@ -585,4 +585,30 @@ public class DBConnector {
       }//end try
    }
 
+   public void addToLikedList(int filmId, int userId){
+      Connection conn = null;
+      ResultSet rs = null;
+
+      String sql = "INSERT INTO liked_list(film_id, film_user_id) " + "VALUES(?, ?)";
+      try{
+         conn = DriverManager.getConnection(DB_URL,USER,PASS);
+         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+         System.out.println("Creating statement...");
+         pstmt.setInt(1, filmId);
+         pstmt.setInt(2, userId);
+
+         pstmt.addBatch();
+         pstmt.executeBatch();
+      }catch (SQLException e) {
+         System.out.println(e.getCause());
+      } finally {
+         try {
+            if(rs != null)  rs.close();
+         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+         }
+      }
+   }
+
 }
