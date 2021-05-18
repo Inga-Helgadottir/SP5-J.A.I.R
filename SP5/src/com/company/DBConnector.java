@@ -236,8 +236,9 @@ public class DBConnector {
             String genre1 = rs.getString("film_genre");
             String genre2 = rs.getString("secondary_film_genre");
 
-
-            match = new Film(id, title, summary, releaseDate, imgPath);
+            if(userInput.equals(title)){
+               match = new Film(id, title, summary, releaseDate, imgPath);
+            }
          }
 
          rs.close();

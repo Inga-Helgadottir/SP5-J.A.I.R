@@ -85,32 +85,51 @@ public class HomeCard {
    private static JPanel createMovieRecommendationsCard(){
       JPanel movieRecommendationCard = new JPanel();
       movieRecommendationCard.setBackground(ColorManager.pink);
+      String[] arr = {"Luca", "Candyman", "22 vs. Earth",
+              "The Mitchells vs the Machines", "Love and Monsters",
+              "Funhouse", "Thunder Force", "Sleepers",
+              "Avengers Infinity War", "Black Panther",
+              "The Wolf of Wall Street", "The Dark Knight"};
 
-      JLabel img = new JLabel(new ImageIcon("src/Film/Luca.jpg"));
-      JLabel img1 = new JLabel(new ImageIcon("src/Film/Candyman.jpg"));
-      JLabel img2 = new JLabel(new ImageIcon("src/Film/22 vs. Earth.jpg"));
-      JLabel img3 = new JLabel(new ImageIcon("src/Film/The Mitchells vs the Machines.jpg"));
-      JLabel img4 = new JLabel(new ImageIcon("src/Film/Love and Monsters.jpg"));
-      JLabel img5 = new JLabel(new ImageIcon("src/Film/Funhouse.jpg"));
-      JLabel img6 = new JLabel(new ImageIcon("src/Film/Thunder Force.jpg"));
-      JLabel img7 = new JLabel(new ImageIcon("src/Film/Sleepers.jpg"));
-      JLabel img8 = new JLabel(new ImageIcon("src/Film/Avengers Infinity War.jpg"));
-      JLabel img9 = new JLabel(new ImageIcon("src/Film/Black Panther.jpg"));
-      JLabel img10 = new JLabel(new ImageIcon("src/Film/The Wolf of Wall Street.jpg"));
-      JLabel img11 = new JLabel(new ImageIcon("src/Film/The Dark Knight.jpg"));
 
-      movieRecommendationCard.add(img);
-      movieRecommendationCard.add(img1);
-      movieRecommendationCard.add(img2);
-      movieRecommendationCard.add(img3);
-      movieRecommendationCard.add(img4);
-      movieRecommendationCard.add(img5);
-      movieRecommendationCard.add(img6);
-      movieRecommendationCard.add(img7);
-      movieRecommendationCard.add(img8);
-      movieRecommendationCard.add(img9);
-      movieRecommendationCard.add(img10);
-      movieRecommendationCard.add(img11);
+      for (String a: arr) {
+         DBConnector db = new DBConnector();
+         Film f = db.findFilm(a);
+         System.out.println(f.toString());
+         JLabel img = new JLabel(new ImageIcon(f.getImgPath()));
+         movieRecommendationCard.add(img);
+         img.addMouseListener(new MouseListener()
+         {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+               GUI.mainContainer.add(InfoCard.createInfoCard(f), "INFO_CARD");
+               GUI.insideAppContentLayout.show(GUI.mainContainer, "INFO_CARD");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e)
+            {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e)
+            {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e)
+            {
+               img.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e)
+            {
+               img.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
+         });
+      }
 
       return movieRecommendationCard;
    }

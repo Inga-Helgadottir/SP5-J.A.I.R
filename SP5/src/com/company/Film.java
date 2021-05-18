@@ -52,4 +52,18 @@ public class Film {
     public ArrayList<String> getGenres() {
         return genres;
     }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", summary='" + summary + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", imgPath='" + imgPath + '\'' +
+                ", directors=" + directors +
+                ", actors=" + actors +
+                ", genres=" + genres +
+                '}';
+    }
 }
