@@ -57,10 +57,6 @@ public class SignIn implements ActionListener {
             success.setText("Failed to login. Incorrect email or password...");
         }else{
             success.setText("Login successful! Welcome back " + Main.currentUser.getName());
-            //kalde start menuen herfra
-            Search ser = new Search();
-//            ser.seeAllFilms();
-            ser.findFilmByName("lala");
         }
 
     }

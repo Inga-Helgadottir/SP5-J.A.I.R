@@ -24,7 +24,6 @@ public class Form extends JFrame implements ActionListener {
       setBounds(300, 90, 900, 600);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       setSize(700, 700);
-      //setResizable(false);
 
       c = getContentPane();
       c.setLayout(null);

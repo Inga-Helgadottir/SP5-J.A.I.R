@@ -6,12 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InfoCard {
-   /*
-       todo:
-        - make img bigger
-        - move text closer to img
-        - call function from a place thats gets info from database
-    */
 
    public static JPanel createInfoCard(Film film){
       JPanel infoCard = new JPanel(new GridLayout(1, 2));
@@ -35,12 +29,12 @@ public class InfoCard {
          panel.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
          panel2.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 10));
 
-         JLabel img2 = new JLabel(new ImageIcon(film.getImgPath()));
+         JLabel img = new JLabel(new ImageIcon(film.getImgPath()));
 
          JLabel label = new JLabel(film.getTitle());
          label.setFont(new Font(font, Font.BOLD, 25));
 
-         JLabel year = new JLabel("Year of release : " + film.getReleaseDate());
+         JLabel year = new JLabel("Release date : " + film.getReleaseDate());
          year.setFont(new Font(font, Font.LAYOUT_LEFT_TO_RIGHT, 17));
 
          String[] arr = splitAboutText(film.getSummary());
@@ -57,7 +51,7 @@ public class InfoCard {
          JLabel about4 = new JLabel(arr[3]);
          about4.setFont(new Font(font, Font.LAYOUT_LEFT_TO_RIGHT, 20));
 
-         panel.add(img2);
+         panel.add(img);
          panel2.add(label);
          panel2.add(about);
          panel2.add(about2);

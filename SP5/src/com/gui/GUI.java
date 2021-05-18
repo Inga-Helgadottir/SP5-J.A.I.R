@@ -128,7 +128,7 @@ public class GUI {
       return nav;
    }
 
-   private JButton createNavBtn(String iconPath){
+   public JButton createNavBtn(String iconPath){
       JButton navBtn = new JButton();
       navBtn.setFocusable(false);
 

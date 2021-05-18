@@ -25,7 +25,6 @@ public class Home extends JFrame implements ActionListener {
       setSize(700,700);
       setTitle("Movie dictionary");
       setVisible(true);
-      //setSize(700,700);
       setLocation(400,400);
       this.setLayout(new GridBagLayout());
 
