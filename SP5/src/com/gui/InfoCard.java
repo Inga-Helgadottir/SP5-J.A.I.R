@@ -60,7 +60,7 @@ public class InfoCard {
 
          likedBtn.addActionListener(e -> {
             DBConnector db = new DBConnector();
-            db.addToLikedList(25, currentUserId);
+            db.addToLikedList(film.getId(), currentUserId);
          });
 
          panel.add(img);
