@@ -491,7 +491,7 @@ public class DBConnector {
             String fn = rs.getString("film_id");
             String fg = rs.getString("film_user_id");
             //-------------------------------------------------------------------------------
-            if(fg.equals("1")){//change later to current users id
+            if(fg.equals(Main.currentUser.getId())){
                getFilmById(fn);
             }
          }
