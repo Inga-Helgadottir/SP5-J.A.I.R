@@ -7,11 +7,11 @@ public class DBConnector {
 
    // JDBC driver name and database URL
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-   static final String DB_URL = "jdbc:mysql://localhost:3307/film_pedia"; // REMEMBER TO CHANGE PORT NUMBER
+   static final String DB_URL = "jdbc:mysql://localhost:3306/film_pedia"; // REMEMBER TO CHANGE PORT NUMBER
 
    //  Database credentials
    static final String USER = "root";
-   static final String PASS = "kisshu25"; // REMEMBER TO CHANGE PASSWORD!
+   static final String PASS = "Password"; // REMEMBER TO CHANGE PASSWORD!
 
    public static User getUser(String email, String password){
       Connection conn = null;
