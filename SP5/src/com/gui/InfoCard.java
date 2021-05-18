@@ -45,9 +45,6 @@ public class InfoCard {
          JLabel label = new JLabel(film.getTitle());
          label.setFont(new Font(font, Font.BOLD, 25));
 
-         JLabel genre = new JLabel("Genres : " + film.getGenres());
-         genre.setFont(new Font(font, Font.LAYOUT_LEFT_TO_RIGHT, 17));
-
          JLabel year = new JLabel("Year of release : " + film.getReleaseDate());
          year.setFont(new Font(font, Font.LAYOUT_LEFT_TO_RIGHT, 17));
 
@@ -71,7 +68,6 @@ public class InfoCard {
          panel2.add(about2);
          panel2.add(about3);
          panel2.add(about4);
-         panel2.add(genre);
          panel2.add(year);
 
          infoCard.add(panel, BorderLayout.WEST);
