@@ -30,8 +30,8 @@ public class UserCard {
          JLabel jLabelGetName = new JLabel(Main.currentUser.getName());
          JLabel jLabelGetMail = new JLabel(Main.currentUser.getEmail());
 
-         jLabelGetName.setBounds(350, 40, 700, 50);
-         jLabelGetMail.setBounds(350, 105, 700, 50);
+         jLabelGetName.setBounds(350, 28, 700, 50);
+         jLabelGetMail.setBounds(350, 100, 700, 50);
 
          jLabelGetName.setFont(new Font("Arial", Font.PLAIN, 30));
          jLabelGetMail.setFont(new Font("Arial", Font.PLAIN, 30));
