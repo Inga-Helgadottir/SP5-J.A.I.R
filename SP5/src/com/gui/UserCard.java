@@ -41,6 +41,7 @@ public class UserCard {
       userCard.add(jLabelMail);
 
       signOut.addActionListener(e -> {
+         Main.currentUser = null;
          GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD");
 
          SignInCard.userText.setText("");
