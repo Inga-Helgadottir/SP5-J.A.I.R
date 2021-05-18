@@ -20,6 +20,7 @@ public class Home extends JFrame implements ActionListener {
    private JButton trial;
    private JLabel background= new JLabel();
    private JLabel label ;
+
    public void homeFrame() {
       setSize(700,700);
       setTitle("Movie dictionary");
@@ -35,7 +36,6 @@ public class Home extends JFrame implements ActionListener {
       setLayout(new FlowLayout());
       JLabel LI = new JLabel();
       LI.setSize(500,500);
-
 
 
       c = getContentPane();
