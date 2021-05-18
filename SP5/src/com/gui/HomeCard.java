@@ -86,6 +86,32 @@ public class HomeCard {
       JPanel movieRecommendationCard = new JPanel();
       movieRecommendationCard.setBackground(ColorManager.pink);
 
+      JLabel img = new JLabel(new ImageIcon("src/Film/Luca.jpg"));
+      JLabel img1 = new JLabel(new ImageIcon("src/Film/Candyman.jpg"));
+      JLabel img2 = new JLabel(new ImageIcon("src/Film/22 vs. Earth.jpg"));
+      JLabel img3 = new JLabel(new ImageIcon("src/Film/The Mitchells vs the Machines.jpg"));
+      JLabel img4 = new JLabel(new ImageIcon("src/Film/Love and Monsters.jpg"));
+      JLabel img5 = new JLabel(new ImageIcon("src/Film/Funhouse.jpg"));
+      JLabel img6 = new JLabel(new ImageIcon("src/Film/Thunder Force.jpg"));
+      JLabel img7 = new JLabel(new ImageIcon("src/Film/Sleepers.jpg"));
+      JLabel img8 = new JLabel(new ImageIcon("src/Film/Avengers Infinity War.jpg"));
+      JLabel img9 = new JLabel(new ImageIcon("src/Film/Black Panther.jpg"));
+      JLabel img10 = new JLabel(new ImageIcon("src/Film/The Wolf of Wall Street.jpg"));
+      JLabel img11 = new JLabel(new ImageIcon("src/Film/The Dark Knight.jpg"));
+
+      movieRecommendationCard.add(img);
+      movieRecommendationCard.add(img1);
+      movieRecommendationCard.add(img2);
+      movieRecommendationCard.add(img3);
+      movieRecommendationCard.add(img4);
+      movieRecommendationCard.add(img5);
+      movieRecommendationCard.add(img6);
+      movieRecommendationCard.add(img7);
+      movieRecommendationCard.add(img8);
+      movieRecommendationCard.add(img9);
+      movieRecommendationCard.add(img10);
+      movieRecommendationCard.add(img11);
+
       return movieRecommendationCard;
    }
 
