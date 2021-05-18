@@ -6,10 +6,7 @@ import com.company.DBConnector;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 public class HomeCard {
 
@@ -25,6 +22,8 @@ public class HomeCard {
    static JPanel movieNoMatchCard;
 
    static Film movieSearchResult = null;
+
+   static FontManager fontManager = new FontManager();
 
    public static JPanel createHomeCard(){
       JPanel homeCard = new JPanel(new BorderLayout());
@@ -69,7 +68,7 @@ public class HomeCard {
             movieSearchResult = DBConnector.findFilm(userInput);
 
             if(movieSearchResult != null){
-               movieMatchCard = createMovieMatchCard();
+               homeMainContainer.add(movieMatchCard = createMovieMatchCard(), "MOVIE_MATCH_CARD");
                homeCardLayout.show(homeMainContainer, "MOVIE_MATCH_CARD");
             }else{
                homeCardLayout.show(homeMainContainer, "MOVIE_NO_MATCH_CARD");
@@ -91,29 +90,50 @@ public class HomeCard {
    }
 
    private static JPanel createMovieMatchCard(){
-      JPanel movieMatchCard = new JPanel();
+      JPanel movieMatchCard = new JPanel(new BorderLayout());
 
       if(movieSearchResult != null){
-         JLabel searchResult = new JLabel();
+         JLabel searchResult = new JLabel(BorderLayout.CENTER);
+         movieMatchCard.setBackground(Color.white);
+
          searchResult.setText(movieSearchResult.getTitle());
+         searchResult.setFont(fontManager.anton40);
+         searchResult.setHorizontalTextPosition(searchResult.CENTER);
+         searchResult.setVerticalTextPosition(searchResult.TOP);
+         searchResult.setIconTextGap(50);
+
+         ImageIcon movieCover = new ImageIcon(movieSearchResult.getImgPath());
+         searchResult.setIcon(movieCover);
+         searchResult.setHorizontalAlignment(searchResult.CENTER);
+
+         searchResult.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+               GUI.mainContainer.add(InfoCard.createInfoCard(movieSearchResult), "INFO_CARD");
+               GUI.insideAppContentLayout.show(GUI.mainContainer, "INFO_CARD");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+               searchResult.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+               searchResult.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            }
+         });
+
          movieMatchCard.add(searchResult);
       }
-
-      //todo: Remove -------------------------------------------------------------
-
-      movieMatchCard.setBackground(Color.green); //todo: Remember to remove
-      //todo: Remove background color and replace with movie title and img
-      //todo: Remove placeholderBtn and replace with the movie cover
-      JButton placeholderBtn = new JButton("See info");
-
-      placeholderBtn.addActionListener(e -> {
-         GUI.mainContainer.add(InfoCard.createInfoCard(movieSearchResult), "INFO_CARD");
-         GUI.insideAppContentLayout.show(GUI.mainContainer, "INFO_CARD");
-      });
-
-      movieMatchCard.add(placeholderBtn); //todo: Remove
-
-      //todo: Remove -------------------------------------------------------------
 
       return movieMatchCard;
    }

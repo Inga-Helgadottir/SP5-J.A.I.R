@@ -44,7 +44,7 @@ public class GUI {
       insideAppCard = createInsideAppCard();
       appWindow.add(outsideAppCard, "OUTSIDE_APP_CARD");
       appWindow.add(insideAppCard, "INSIDE_APP_CARD");
-      mainAppLayout.show(appWindow.getContentPane(), "INSIDE_APP_CARD"); //todo Change back to OUTSIDE_APP_CARD when done
+      mainAppLayout.show(appWindow.getContentPane(), "OUTSIDE_APP_CARD"); //todo Change back to OUTSIDE_APP_CARD when done
 
       appWindow.setVisible(true);
       appWindow.setIconImage(setAppIcon().getImage());
@@ -99,8 +99,6 @@ public class GUI {
 
    private JPanel createNavComponent(){
       JPanel nav = new JPanel(new GridLayout(1, 3));
-
-
       nav.setBackground(ColorManager.pink);
 
       // Create buttons
@@ -110,7 +108,11 @@ public class GUI {
 
       // Add eventListeners to the buttons
       homeBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"HOME_CARD"));
+
+      mainContainer.add(UserCard.createUserCard(), "USER_CARD");
       userBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"USER_CARD"));
+
+      mainContainer.add(LikedCard.createLikedCard(), "LIKED_CARD");
       likedBtn.addActionListener(e -> insideAppContentLayout.show(mainContainer,"LIKED_CARD"));
 
       nav.add(homeBtn);
