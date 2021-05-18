@@ -26,7 +26,7 @@ public class InfoCard {
          @Override
          public Dimension getPreferredSize() {
             return new Dimension(400, 500);
-         };
+         }
       };
 
       panel2.setBackground(ColorManager.white);
