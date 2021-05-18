@@ -102,13 +102,17 @@ public class SignInCard {
             String user = userText.getText();
             String password = passwordText.getText();
 
-            Main.currentUser = DBConnector.getUser(user, password);
+            if(user.equals("") || password.equals("")){
+               success.setText("Please fill out all the input fields...");
+            }else{
+               Main.currentUser = DBConnector.getUser(user, password);
 
-           if (Main.currentUser == null) {
-               success.setText("Failed to login. Incorrect email or password...");
-           }else {
-              GUI.mainAppLayout.show(GUI.appWindow.getContentPane(), "INSIDE_APP_CARD");
-           }
+               if (Main.currentUser == null) {
+                  success.setText("Failed to login. Incorrect email or password...");
+               } else {
+                  GUI.mainAppLayout.show(GUI.appWindow.getContentPane(), "INSIDE_APP_CARD");
+               }
+            }
          }
       });
 

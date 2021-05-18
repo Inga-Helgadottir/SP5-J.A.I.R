@@ -127,7 +127,6 @@ public class SignUpCard {
                textFieldName.setText("");
                textFieldemail.setText("");
             }
-
          }
       });
 
