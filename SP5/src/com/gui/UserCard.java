@@ -1,5 +1,7 @@
 package com.gui;
 
+import com.company.Main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -23,15 +25,31 @@ public class UserCard {
       signOut.setForeground(Color.black);
       signOut.setSize(100, 30);
       signOut.setLocation(100, 170);
-      //JLabel jLabelGetName = new JLabel(Main.currentUser.getName());
-      //JLabel jLabelGetMail = new JLabel(Main.currentUser.getEmail());
+
+      if(Main.currentUser != null){
+         System.out.println(Main.currentUser.getName());
+
+         JLabel jLabelGetName = new JLabel(Main.currentUser.getName());
+         JLabel jLabelGetMail = new JLabel(Main.currentUser.getEmail());
+
+         userCard.add(jLabelGetName);
+         userCard.add(jLabelGetMail);
+      }
+
       userCard.setBackground(ColorManager.cyan);
       userCard.add(jLabelName);
       userCard.add(jLabelMail);
-      userCard.add(signOut);
+
       signOut.addActionListener(e -> {
          GUI.outSideAppContentLayout.show(GUI.outsideAppCard, "SIGN_IN_CARD");
+
+         SignInCard.userText.setText("");
+         SignInCard.passwordText.setText("");
+         GUI.mainAppLayout.show(GUI.appWindow.getContentPane(), "OUTSIDE_APP_CARD");
       });
+
+      userCard.add(signOut);
+
       return userCard;
    }
 }

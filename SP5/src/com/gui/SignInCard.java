@@ -37,11 +37,11 @@ public class SignInCard {
    private  JPanel mainPanel;
    private JRadioButton listlabel;
    private static JLabel userlabel;
-   private static JTextField userText;
+   static JTextField userText;
    private JButton alreadyHaveAccount;
    private static JButton notAlreadyHaveAccount;
    private static JButton button;
-   private static JPasswordField passwordText;
+   static JPasswordField passwordText;
    private JButton signIn;
    private JButton signout;
 
